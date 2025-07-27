@@ -20,7 +20,7 @@ isipheko_df = df[df["Type"] == "Isipheko"]
 df['Name'] = np.where(df['Type'] == 'Isipheko', 'Mhlengi', df['Name'])
 
 #st.title("💼 Ezase......Qedela Wena - Contribution Dashboard")
-st.markdown("<h1 style='text-align: center; color: #4B0082;'>Ezase......Qedela Wena</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #da9922ff;'>Ezase......Qedela Wena</h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center;'>Monthly Contribution Insights</h3>", unsafe_allow_html=True)
 
 
