@@ -2,13 +2,10 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 from datetime import timedelta
-from pathlib import Path
 
 
 # Load the data
-current_dir = Path(__file__).parent
-excel_path = current_dir / "statement.xlsx"
-df = pd.read_excel(excel_path)
+df = pd.read_excel("data/statement.xlsx")
 
 # Convert dates
 df['Actual Date'] = pd.to_datetime(df['Actual Date'])
