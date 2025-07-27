@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import altair as alt
 from datetime import timedelta
 
@@ -11,6 +12,12 @@ df = pd.read_excel("data/statement.xlsx")
 df['Actual Date'] = pd.to_datetime(df['Actual Date'])
 df['Month End'] = pd.to_datetime(df['Month End'])
 df['Month'] = df['Month End'].dt.to_period("M").astype(str)
+
+# Filter by Isipheko contributions
+isipheko_df = df[df["Type"] == "Isipheko"]
+
+# Allocate Isipheko to Mhlengi
+df['Name'] = np.where(df['Type'] == 'Isipheko', 'Mhlengi', df['Name'])
 
 #st.title("💼 Ezase......Qedela Wena - Contribution Dashboard")
 st.markdown("<h1 style='text-align: center; color: #4B0082;'>Ezase......Qedela Wena</h1>", unsafe_allow_html=True)
@@ -97,9 +104,13 @@ heatmap = alt.Chart(late_pivot).mark_rect().encode(
 
 st.altair_chart(heatmap, use_container_width=True)
 
+# Isipheko Contributions
+st.markdown("### 🎁 Isipheko Sika Gatsheni Contributions")
+st.dataframe(isipheko_df[['Name', 'Amount', 'Actual Date']], use_container_width=False, hide_index=True)
+
 # Raw Data
 st.markdown("### 📄 Raw Data")
-st.dataframe(filtered_df)
+st.dataframe(filtered_df, hide_index=True)
 
 # CSV Download
 csv = filtered_df.to_csv(index=False).encode()
