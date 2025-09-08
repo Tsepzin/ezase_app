@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import altair as alt
+import streamlit as st
 from datetime import timedelta
 
 
