@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 from datetime import timedelta
+import altair as alt
 
 
 # Load the data
